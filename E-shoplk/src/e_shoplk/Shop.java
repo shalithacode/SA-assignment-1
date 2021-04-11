@@ -11,12 +11,19 @@ public class Shop {
 		item.add(new Item(name, price, qty));
 	}
 	
-	public void viewProduct() {
+	public String viewProduct() {
 		 Iterator itr=item.iterator();  
+		 
+		 if(item.isEmpty())
+			 return"No Current Items";
+		 else {
+			 System.out.println(" Item | Price | Quntity ");
 		  while(itr.hasNext()){  
 		    Item product=(Item)itr.next();  
-		    System.out.println(product.getpNname()+" "+product.getpPrice()+" "+product.getpQty());  
-		  }  
+		    System.out.println(" " + product.getpNname()+" | "+product.getpPrice()+" | "+product.getpQty());  
+		  }
+		return "----ALL ITEMS-----"; 
+		 }
 		
 	}
 }
