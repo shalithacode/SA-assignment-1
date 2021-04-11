@@ -6,5 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: e_shoplk.Activator
 Bundle-RequiredExecutionEnvironment: JavaSE-15
 Automatic-Module-Name: E.shoplk
+Export-Package: e_shoplk
 Import-Package: org.osgi.framework;version="1.3.0"
 Bundle-ActivationPolicy: lazy
