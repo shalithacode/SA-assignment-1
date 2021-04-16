@@ -1,6 +1,7 @@
 package e_shoplk;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 public class Login {
 
@@ -9,17 +10,22 @@ public class Login {
 	public Login() {
 		user.put("vendor1", "111");
 		user.put("vendor2", "222");
-		user.put("vendor2", "333");
+		user.put("vendor3", "333");
 		
 	}
 	public boolean isUser(String uId, String password) {
 		
-		for (String i : user.keySet()) {
-			  if (i ==uId  && password== user.get(i)) {
-				  return true;
+		boolean res = true;
+		
+		System.out.println(uId + password);
+		 for(Entry<String, String> m : user.entrySet()){   
+		
+			 if (uId.equals(m.getKey()) &&  password.equals(m.getValue())) {
+				 res = true;
+				  break;
 			  }
-			}
-		return false;
+			   }  
+		return res;
 	}
 	
 }

@@ -14,7 +14,7 @@ public class Activator implements BundleActivator {
 		Shop publisherShopService = new Shop();
 		shopServiceRegistration = context.registerService(Shop.class.getName(), publisherShopService, null);
 		
-		Shop publisherLoginService = new Shop();
+		Login publisherLoginService = new Login();
 		loginServiceRegistration = context.registerService(Login.class.getName(), publisherLoginService, null);
 	}
 
