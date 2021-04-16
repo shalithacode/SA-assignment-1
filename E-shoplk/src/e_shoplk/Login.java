@@ -16,8 +16,7 @@ public class Login {
 	public boolean isUser(String uId, String password) {
 		
 		boolean res = true;
-		
-		System.out.println(uId + password);
+
 		 for(Entry<String, String> m : user.entrySet()){   
 		
 			 if (uId.equals(m.getKey()) &&  password.equals(m.getValue())) {
