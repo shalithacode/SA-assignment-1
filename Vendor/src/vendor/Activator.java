@@ -50,7 +50,11 @@ public class Activator implements BundleActivator {
 				}else if(opt.equals("delete")){
 					System.out.println("Enter what do you want to delete?");
 					String deleteItem = scan.next().toLowerCase();
-					shopServicePublish.deleteProduct(deleteItem);
+					if(shopServicePublish.deleteProduct(deleteItem)) {
+						System.out.println("Product deleted.");
+					}else {
+						System.out.println("Something went wrong...");
+					}
 					
 				}else {
 					System.out.println("Invalid input!");
