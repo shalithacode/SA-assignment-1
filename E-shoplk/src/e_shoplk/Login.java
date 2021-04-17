@@ -7,10 +7,11 @@ public class Login {
 
 	HashMap<String, String> user = new HashMap<String, String>();
 
+	private final  static String vendor = "vendor1";
+	private final  static String password = "111";
+	
 	public Login() {
-		user.put("vendor1", "111");
-		user.put("vendor2", "222");
-		user.put("vendor3", "333");
+		user.put(vendor, password);
 		
 	}
 	public boolean isUser(String uId, String password) {
