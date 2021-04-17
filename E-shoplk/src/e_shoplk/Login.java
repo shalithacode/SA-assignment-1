@@ -15,7 +15,7 @@ public class Login {
 	}
 	public boolean isUser(String uId, String password) {
 		
-		boolean res = true;
+		boolean res = false;
 
 		 for(Entry<String, String> m : user.entrySet()){   
 		
