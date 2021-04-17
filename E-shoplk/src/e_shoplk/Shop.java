@@ -26,4 +26,16 @@ public class Shop {
 		 }
 		
 	}
+	public boolean deleteProduct(String prod) {
+		 Iterator itr=item.iterator();  
+		 while(itr.hasNext()){  
+			Item product=(Item)itr.next();
+			if(prod.equals(product.getpNname())) {
+				
+				item.remove(product);
+				return true;
+			}
+	}
+		 return false;
+	}
 }
