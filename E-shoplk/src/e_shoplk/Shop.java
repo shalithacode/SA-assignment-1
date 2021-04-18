@@ -3,7 +3,7 @@ package e_shoplk;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Shop {
+public class Shop implements Ishop{
 	ArrayList<Item> item = new ArrayList<>();
 	
 	public void addProduct(String name, double price, int qty) {

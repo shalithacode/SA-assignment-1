@@ -1,5 +1,6 @@
 package vendor;
 
+import e_shoplk.Ishop;
 import e_shoplk.Login;
 import e_shoplk.Shop;
 
@@ -13,7 +14,7 @@ public class Activator implements BundleActivator {
 
 	ServiceReference shopServiceReference;
 	ServiceReference loginServiceReference;
-	Shop shopServicePublish;
+	Ishop shopServicePublish;
 	
 	Scanner scan = new Scanner(System.in);
 

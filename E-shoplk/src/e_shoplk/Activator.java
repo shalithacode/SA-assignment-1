@@ -11,7 +11,7 @@ public class Activator implements BundleActivator {
 
 	public void start(BundleContext context) throws Exception {
 		System.out.println("Shop plugin activated");
-		Shop publisherShopService = new Shop();
+		Ishop publisherShopService = new Shop();
 		shopServiceRegistration = context.registerService(Shop.class.getName(), publisherShopService, null);
 		
 		Login publisherLoginService = new Login();
