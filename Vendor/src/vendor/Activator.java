@@ -20,15 +20,15 @@ public class Activator implements BundleActivator {
 
 	public void start(BundleContext context) throws Exception {
 
-		//Refer login service
+		// Refer login service
 		loginServiceReference = context.getServiceReference(Login.class.getName());
 		Login loginServicePublish = (Login) context.getService(loginServiceReference);
 
-		//Refer shop service
+		// Refer shop service
 		shopServiceReference = context.getServiceReference(Shop.class.getName());
 		shopServicePublish = (Shop) context.getService(shopServiceReference);
 
-		//Validate vendor
+		// Validate vendor
 		System.out.println("Seller Id: ");
 		String uId = scan.next();
 		System.out.println("Seller password: ");
@@ -48,11 +48,11 @@ public class Activator implements BundleActivator {
 				System.out.println("Delete your product list => delete");
 				String opt = scan.next().toLowerCase();
 
-				//Delete existing product
+				// Delete existing product
 				if (opt.equals("update")) {
 					addProducts();
 				} else if (opt.equals("delete")) {
-					//Delete existing product
+					// Delete existing product
 					System.out.println("Enter what do you want to delete?");
 					String deleteItem = scan.next().toLowerCase();
 					if (shopServicePublish.deleteProduct(deleteItem)) {
@@ -75,7 +75,7 @@ public class Activator implements BundleActivator {
 
 	}
 
-	//Add new products
+	// Add new products
 	public void addProducts() {
 		System.out.println("How many product do you want to add?");
 		int count = scan.nextInt();
@@ -101,7 +101,7 @@ public class Activator implements BundleActivator {
 		}
 	}
 
-	//Deactivated services
+	// Deactivated services
 	public void stop(BundleContext context) throws Exception {
 		System.out.println("Vendor plugin deactivated !!!");
 		context.ungetService(loginServiceReference);
