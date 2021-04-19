@@ -57,6 +57,10 @@ public class Activator implements BundleActivator {
 					String deleteItem = scan.next().toLowerCase();
 					if (shopServicePublish.deleteProduct(deleteItem)) {
 						System.out.println("Product deleted.");
+						System.out.println("");
+						if (shopServicePublish.viewProduct()) {
+							System.out.println("----ALL ITEMS-----");
+						}
 					} else {
 						System.out.println("Something went wrong...");
 					}
