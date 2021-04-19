@@ -2,6 +2,7 @@ package deliveryadmin;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
@@ -13,21 +14,63 @@ import org.osgi.service.event.EventAdmin;
 @Component(service = DeliveryCommand.class)
 	public class DeliveryCommand {
 	
-		ServiceReference serviceReference;
-	
-	    @Reference
-	    EventAdmin eventAdmin;
 	 
-	    public void dispatchOrder(String zipCode,String city, BundleContext bundleContext) {
+	    public void dispatchOrder(BundleContext bundleContext, EventAdmin eventAdmin) {
 
-	        // create the event properties object
-	        Map<String, Object> properties = new HashMap<>();
-	        properties.put("city", city);
-	        Event event = null;
+			Scanner userInput = new Scanner(System.in);
+			
+			System.out.println("\n>> DELIVERY DETAILS <<\n");
+			
+			System.out.println("Delivery address : ");
+			String delAddress = userInput.nextLine();
+			System.out.println("City : ");
+			String city = userInput.next();
+			System.out.println("Zip Code : ");
+			String zipCode = userInput.next();
+			
+        	System.out.println("\nPlease confirm your delivery address");
+        	System.out.println("====================================");
+        	System.out.println("Delivery address : "+delAddress);
+			System.out.println("City : "+city);
+			System.out.println("Zip Code : "+zipCode);
+
+			System.out.println("\nTo confirm press (Y) to re-enter press (N)");
+			String confirmAddress = userInput.next();
+			
+	        while(confirmAddress.equalsIgnoreCase("N")) {
+	        	
+	        	userInput = new Scanner(System.in);
+	        	
+				System.out.println("\n>> RE-ENTER DELIVERY DETAILS <<\n");
+				
+				System.out.println("Delivery address : ");
+				delAddress = userInput.nextLine();
+				System.out.println("City : ");
+				city = userInput.next();
+				System.out.println("Zip Code : ");
+				zipCode = userInput.next();
+				
+	        	System.out.println("\nPlease confirm your delivery address");
+	        	System.out.println("====================================");
+	        	System.out.println("Delivery address : "+delAddress);
+				System.out.println("City : "+city);
+				System.out.println("Zip Code : "+zipCode);
+	        	
+				System.out.println("\nTo confirm press (Y) to re-enter press (N)");
+				confirmAddress = userInput.next();
+	        }
+			
+	        System.out.println("\nThank you for confirming your delivery address\n");
 	        
-	        serviceReference = bundleContext.getServiceReference(EventAdmin.class.getName());
-
-	        eventAdmin = (EventAdmin)bundleContext.getService(serviceReference);
+	        Map<String, Object> properties = new HashMap<>();
+	        
+	        //TODO orderItems should be passed in
+	        Map<String, String> orderItems = new HashMap<>();
+	        
+	        properties.put("city", city);
+	        properties.put("deliveryAddress", delAddress);
+	        properties.put("orderItems", orderItems);
+	        Event event = null;
 	        
 	        Integer provinceCode = Character.getNumericValue(zipCode.charAt(0));
 	        String province = "";

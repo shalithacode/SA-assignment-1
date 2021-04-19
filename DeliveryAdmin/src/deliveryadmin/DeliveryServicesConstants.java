@@ -11,4 +11,8 @@ public final class DeliveryServicesConstants {
 	public static final String TOPIC_CENTRAL_PROV = TOPIC_BASE+"CENTRAL";
 	public static final String TOPIC_WESTERN_PROV = TOPIC_BASE+"WESTERN";
 	
+	/* Delivery branches queues file locations */
+	public static final String QUEUE_NORTHERN_PROV = "C:/Users/admin/Desktop/Shop-Delivery-Queues/NorthernQueue.txt";
+	public static final String QUEUE_CENTRAL_PROV = "C:/Users/admin/Desktop/Shop-Delivery-Queues/CentralQueue.txt";
+	public static final String QUEUE_WESTERN_PROV = "C:/Users/admin/Desktop/Shop-Delivery-Queues/WesternQueue.txt";
 }
