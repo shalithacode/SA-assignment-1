@@ -20,9 +20,11 @@ import deliveryadmin.DeliveryServicesConstants;
 		    
 	        try {
 	            FileWriter writer = new FileWriter(DeliveryServicesConstants.QUEUE_NORTHERN_PROV, true);
+	            writer.write("Order Number : "+event.getProperty("orderNumber"));
+	            writer.write("\r\n"); 
 	            writer.write("Delivery Address : "+event.getProperty("deliveryAddress"));
 	            writer.write("\r\n"); 
-	            writer.write("Order Items : "+event.getProperty("orderItems"));
+	            writer.write("===============================");
 	            writer.write("\r\n"); 
 	            writer.write("\r\n"); 
 	            writer.close();

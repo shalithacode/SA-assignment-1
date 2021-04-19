@@ -16,6 +16,7 @@ public class DeliveryCommandActivator implements BundleActivator {
     @Reference
     EventAdmin eventAdmin;
 	ServiceReference deliveryAdminServiceReference;
+	ServiceReference cartServiceReference;
 	
 	private static BundleContext context;
 
@@ -30,7 +31,7 @@ public class DeliveryCommandActivator implements BundleActivator {
 		deliveryAdminServiceReference = bundleContext.getServiceReference(EventAdmin.class.getName());
 
         eventAdmin = (EventAdmin)bundleContext.getService(deliveryAdminServiceReference);
-
+       
         // Starts service to get delivery details and notify relevant delivery branch
 		deliverycmd.dispatchOrder(bundleContext, eventAdmin);
 		

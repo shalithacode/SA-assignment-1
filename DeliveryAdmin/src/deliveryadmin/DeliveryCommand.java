@@ -63,13 +63,10 @@ import org.osgi.service.event.EventAdmin;
 	        System.out.println("\nThank you for confirming your delivery address\n");
 	        
 	        Map<String, Object> properties = new HashMap<>();
-	        
-	        //TODO orderItems should be passed in
-	        Map<String, String> orderItems = new HashMap<>();
-	        
+	        	        
 	        properties.put("city", city);
 	        properties.put("deliveryAddress", delAddress);
-	        properties.put("orderItems", orderItems);
+	        properties.put("orderNumber", DeliveryServicesConstants.currentOrderNumber);
 	        Event event = null;
 	        
 	        Integer provinceCode = Character.getNumericValue(zipCode.charAt(0));

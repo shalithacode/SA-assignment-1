@@ -15,4 +15,9 @@ public final class DeliveryServicesConstants {
 	public static final String QUEUE_NORTHERN_PROV = "C:/Users/admin/Desktop/Shop-Delivery-Queues/NorthernQueue.txt";
 	public static final String QUEUE_CENTRAL_PROV = "C:/Users/admin/Desktop/Shop-Delivery-Queues/CentralQueue.txt";
 	public static final String QUEUE_WESTERN_PROV = "C:/Users/admin/Desktop/Shop-Delivery-Queues/WesternQueue.txt";
+	
+	/* Delivery branches orders file location */
+	public static final String ORDERS = "C:/Users/admin/Desktop/Shop-Delivery-Queues/AllOrders.txt";
+	
+	public static String currentOrderNumber = "";
 }

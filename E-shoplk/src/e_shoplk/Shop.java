@@ -1,18 +1,24 @@
 package e_shoplk;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
 
 import org.osgi.framework.BundleContext;
 
 import deliveryadmin.DeliveryCommandActivator;
+import deliveryadmin.DeliveryServicesConstants;
 
 public class Shop implements Ishop {
 	
 	// Item list
 	ArrayList<Item> item = new ArrayList<>();
+	
+	int orderNumber = 0;
 
 	@Override
 	//Add a new product
@@ -59,7 +65,7 @@ public class Shop implements Ishop {
 		
 		Scanner userInput = new Scanner(System.in);
 		
-		//TODO display cart items in Cart plug-in before coming here
+		//TODO display cart items in *Cart plug-in* before coming here
 		
 		System.out.println("Do you want to proceed to the checkout? ( Y to proceed, N to cancel)");
 		String checkoutProceed = userInput.next();
@@ -69,7 +75,8 @@ public class Shop implements Ishop {
 			System.out.println("=========== STORE CHECKOUT ===========");
 			System.out.println("======================================\n");
 			
-						//TODO print bill here
+			// print invoice
+			generateInvoice(cartItems);
 			
 			DeliveryCommandActivator deliveryService = new DeliveryCommandActivator();
 			try {
@@ -86,9 +93,94 @@ public class Shop implements Ishop {
 	}
 
 	@Override
-	// Generate invoice for items
+	// Generates invoice for items
 	public void generateInvoice(HashMap<String, Integer> cartItems) {
-		// TODO Auto-generated method stub
+		
+		ArrayList<Item> billItems = new ArrayList<>();
+		String currItem;
+		double totalPrice, totItemPrice; 
+		boolean itemNotFound;
+		
+		totalPrice = 0;
+		
+		//Calculating invoice
+		for (Map.Entry<String, Integer> set : cartItems.entrySet()) {
+			currItem = set.getKey();
+			itemNotFound = true;
+			
+			for (Item thisitem : item) { 
+				
+				totItemPrice = 0;
+				
+				if(thisitem.getpNname().equalsIgnoreCase(currItem)) {
+					
+					itemNotFound = false;
+					
+					totItemPrice = thisitem.getpPrice() * set.getValue();
+					totalPrice += totItemPrice;
+					
+					billItems.add(new Item(currItem, totItemPrice, set.getValue()));
+					
+					break;
+				}
+			}
+			
+			if(itemNotFound) {
+				System.out.println("ERROR : Item "+ currItem.toUpperCase() +" not found");
+			}
+			
+			
+		}
+		
+		//Printing invoice
+		
+		System.out.println("\n============= INVOICE =============\n");
+		
+		System.out.printf("%-15s%-15s%-15s%n", "ITEM", "QUANTITY", "PRICE");
+		
+		for (Item billitem : billItems) {
+			// TODO format to a table
+			
+			System.out.format("%-15s%-15s%-15s%n", billitem.getpNname(), String.valueOf(billitem.getpQty()), String.valueOf(billitem.getpPrice()));
+		}
+		
+		int thisOrderNum = ++orderNumber;
+		
+		String orderNum = String.format("%04d", thisOrderNum);
+		DeliveryServicesConstants.currentOrderNumber = orderNum;
+		
+		System.out.println("\n~~~~~~~~~~~~~~~~~~~");
+		System.out.println("ORDER NUMBER : "+orderNum);
+		System.out.println("~~~~~~~~~~~~~~~~~~~");
+		
+		System.out.println("\n===================================");
+		
+		//Log Items
+        try {
+            FileWriter writer = new FileWriter(DeliveryServicesConstants.ORDERS, true);
+            writer.write("Order ID : "+orderNum);
+            writer.write("\r\n"); 
+            writer.write("Order Items");
+            writer.write("\r\n"); 
+            writer.write("-----------");
+            writer.write("\r\n"); 
+            for (Item orderitem : billItems) {
+            	writer.write("Item : "+orderitem.getpNname());
+                writer.write("\r\n"); 
+                writer.write("Quantity : "+orderitem.getpQty());
+                writer.write("\r\n");
+                writer.write("\r\n");
+			}
+            writer.write("===============");
+            writer.write("\r\n"); 
+            writer.write("\r\n"); 
+            writer.close();
+                        
+        } catch (SecurityException e) {  
+	        e.printStackTrace();  
+	    } catch (IOException e) {
+            e.printStackTrace();
+        }
 		
 	}
 }

@@ -44,6 +44,7 @@ public class DeliveryServiceActivator implements BundleActivator{
             propsNorthern.put(EventConstants.EVENT_TOPIC, DeliveryServicesConstants.TOPIC_NORTHERN_PROV);
             EventHandler nothernProv = new Northern();
             northernDeliveryServiceRegistration = bundleContext.registerService(EventHandler.class.getName(), nothernProv, propsNorthern);
+
 	}
 
 	@Override
