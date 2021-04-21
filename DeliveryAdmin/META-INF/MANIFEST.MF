@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DeliveryAdmin
+Bundle-SymbolicName: DeliveryAdmin
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: deliveryadmin.DeliveryCommandActivator
+Bundle-RequiredExecutionEnvironment: JavaSE-15
+Automatic-Module-Name: DeliveryAdmin
+Import-Package: org.osgi.framework,
+ org.osgi.service.component.annotations,
+ org.osgi.service.event
+Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/deliveryadmin.DeliveryCommand.xml
+Export-Package: deliveryadmin

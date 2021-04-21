@@ -1,12 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: E-shoplk
-Bundle-SymbolicName: E-shoplk
+Bundle-Name: Cart
+Bundle-SymbolicName: Cart
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: e_shoplk.ShopActivator
+Bundle-Activator: cart.CartActivator
 Bundle-RequiredExecutionEnvironment: JavaSE-15
-Automatic-Module-Name: E.shoplk
-Export-Package: e_shoplk
-Import-Package: deliveryadmin,
+Automatic-Module-Name: Cart
+Import-Package: e_shoplk,
  org.osgi.framework;version="1.3.0"
 Bundle-ActivationPolicy: lazy
