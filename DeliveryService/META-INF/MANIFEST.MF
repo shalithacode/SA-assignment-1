@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Customer
+Bundle-SymbolicName: DeliveryService
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: deliveryService.DeliveryServiceActivator
+Bundle-RequiredExecutionEnvironment: JavaSE-15
+Automatic-Module-Name: Customer
+Import-Package: deliveryadmin,
+ org.osgi.framework;version="1.3.0",
+ org.osgi.service.component.annotations;version="1.3.0",
+ org.osgi.service.event;version="1.4.0"
+Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/deliveryService.Northern.xml,
+ OSGI-INF/deliveryService.Western.xml,
+ OSGI-INF/deliveryService.Central.xml

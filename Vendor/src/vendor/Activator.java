@@ -29,6 +29,9 @@ public class Activator implements BundleActivator {
 		shopServicePublish = (Shop) context.getService(shopServiceReference);
 
 		// Validate vendor
+		System.out.println("==============");
+		System.out.println("|Seller Login|");
+		System.out.println("==============\n");
 		System.out.println("Seller Id: ");
 		String uId = scan.next();
 		System.out.println("Seller password: ");
@@ -57,10 +60,6 @@ public class Activator implements BundleActivator {
 					String deleteItem = scan.next().toLowerCase();
 					if (shopServicePublish.deleteProduct(deleteItem)) {
 						System.out.println("Product deleted.");
-						System.out.println("");
-						if (shopServicePublish.viewProduct()) {
-							System.out.println("----ALL ITEMS-----");
-						}
 					} else {
 						System.out.println("Something went wrong...");
 					}
@@ -94,7 +93,7 @@ public class Activator implements BundleActivator {
 			name = scan.next();
 			System.out.print("Enter price :");
 			price = scan.nextDouble();
-			System.out.print("Enter quntity :");
+			System.out.print("Enter quantity :");
 			qty = scan.nextInt();
 
 			shopServicePublish.addProduct(name, price, qty);
